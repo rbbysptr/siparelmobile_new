@@ -1,0 +1,27 @@
+dynamic url = Uri.http('siparel.id', '/API/login');
+      var body_send = """ 
+        {"email": "$email", 
+        "password": "$password",
+        }
+      """;
+      setState(() {
+        isLoading = true;
+      });
+
+      try {
+        Map<String, String> requestHeader = {
+          'Content-type': 'application/json'
+        };
+        http.Response response = await http
+            .post(url, body: body_send, headers: requestHeader)
+            .timeout(Duration(seconds: 25));
+        var data = json.encode(response.body);
+        print(data);
+        return data;
+      } on SocketException catch (e) {
+        isLoading = false;
+        return e;
+      } on TimeoutException catch (e) {
+        isLoading = false;
+        return e;
+      }

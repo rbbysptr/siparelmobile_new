@@ -1,0 +1,9 @@
+future<post> createPost(String title, string body) async {
+Map<String, dynamic> request = {
+'title':tile,
+'body' : body,
+'userId': "1"
+};
+final uri = Uri.parse("https://siparel.id/api/login");
+
+}

@@ -1,0 +1,53 @@
+GestureDetector(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Pilih Sumber Gambar'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            _pickImage(ImageSource.camera);
+                          },
+                          child: Text('Kamera'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            _pickImage(ImageSource.gallery);
+                          },
+                          child: Text('Galeri'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: CircleAvatar(
+                radius: 50,
+                backgroundImage:
+                    _imageFile != null ? FileImage(_imageFile!) : null,
+                child: _imageFile == null ? Icon(Icons.person, size: 50) : null,
+              ),
+            ),
+            SizedBox(height: 5),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => EditProfilePage()),
+                  ); // Aksi yang ingin dilakukan saat tombol ditekan
+                  print('Tombol ubah ditekan!');
+                },
+                child: Text('Ubah Profil'),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(
+                          255, 29, 6, 238)), // Ubah warna latar belakang tombol
+                  foregroundColor: MaterialStateProperty.all<Color>(
+                      Colors.white), // Ubah warna teks tombol
+                ),
+              ),
+            ),

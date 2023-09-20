@@ -1,0 +1,18 @@
+ dynamic url = Uri.http('118.97.147.27:8009', '/absen/');
+    var body_send = """ 
+    {
+      "pin": "$pin",
+      "ip_address": "$ip",
+      "verif": $verifikasi,
+      "is_dm": "$dm",
+      "image": "$image",
+      "lat": "null",
+      "long": "null",
+      "alt": null,
+      "confidance":  $verif,
+      "mac": "$mac",
+      "in_out": ${inOut.toString()}
+    }
+    
+
+
